@@ -17,6 +17,17 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
 
+    % HERE OUR OBJECTIVE IS TO FIND THE BEST THETAS USING GRADIENT DESCENT
+    
+    % first we pull out the     
+    theta0 = theta(1); 
+    theta1 = theta(2);
+
+    theta0 = theta0 - alpha * (1/m) * sum(((X*theta)-y));
+    theta1 = theta1 - alpha * (1/m) * sum(((X*theta)-y) .* X(:,2));
+
+    theta(1) = theta0;
+    theta(2) = theta1;
 
 
 
