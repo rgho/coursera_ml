@@ -15,15 +15,10 @@ J = 0;
 
 % in the multivariable case we use some fancy linear algebra to rewrite the cost function.
 n = size(X,2); % GEt the number of columns in the X feature matrix.
-
+% DOUBLE CHECK CAN ALSO POSSIBLE BE DONE DIRECTLY BY SIMPLYTT TAKING THE TRANSPOSE OF X
 for i = 1:n
 	X_new(i,:) = transpose(X(:,i));
 end 
-
-
-X
-X_new
-G = transpose(X)
 
 J =  (1/(2*m)) * (transpose(X*theta - y) * (X*theta - y));
 
