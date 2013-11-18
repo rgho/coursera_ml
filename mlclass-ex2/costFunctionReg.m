@@ -18,6 +18,41 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 
+% COST CALC SUM PORTION
+for sample_number = 1:m
+	xi = X(sample_number,:);
+	hypothesis = sigmoid(xi*theta); % have no idea why this order is what works! and no thata transpose.
+	yi = y(sample_number);
+	J = J + (-1*yi*log(hypothesis)-((1 -yi)*log(1-hypothesis)));
+end
+J = (1/m) * J;
+% COMPUTE REGULARIZATION TERM
+regularization_term = 0;
+for feature_number = 1:length(theta)
+	regularization_term = regularization_term + theta(feature_number)^2;
+end
+regularization_term = regularization_term * (lambda/(2*m));
+% ADD REG TERM TO COST
+J = J + regularization_term
+
+
+
+
+% GRADIENT 
+for feature_number = 1:length(theta)
+	%grad(feature_number) = 0
+	temp = 0
+	for sample_number = 1:m
+		xi = X(sample_number,:);
+		hypothesis = sigmoid(xi*theta);
+		yi = y(sample_number);
+		temp = temp + ((hypothesis-yi)*xi(feature_number));
+	end
+	grad(feature_number) = (1/m)*temp
+end
+
+
+
 
 
 
