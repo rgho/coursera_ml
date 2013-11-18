@@ -16,7 +16,10 @@ p = zeros(m, 1);
 %
 
 
-
+for datapoint_number = 1:m
+	xi = X(datapoint_number,:);
+	p(datapoint_number) = round(sigmoid(xi*theta)); 
+end
 
 
 
